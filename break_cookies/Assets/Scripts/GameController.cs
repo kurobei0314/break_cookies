@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     //時間を表示するText型の変数
     public Text timeText;
 
-    private float times = 0.0f;
+    private float times = GameInfo.GameTime;
 
     //ゲームの状況を管理する
     public enum GameState{
@@ -74,12 +74,33 @@ public class GameController : MonoBehaviour
 
             //Cookies[i].SetActive(true);
             Cookies[i].SetActive(false);
-
         }
     }
 
     void CookiesControll(){
         
+        CookiesActive();
+        CookiesCircle();
+    }
+
+    //一定時間経過するごとにクッキーを表示させる
+    void CookiesActive(){
+
+        int itimes = (int)times;
+        int ActiveTime = (int)(GameInfo.GameTime / GameInfo.COOKIE_NUM);
+        
+        if( DisplayIndent == 0 || (int)( (GameInfo.GameTime - itimes) / (ActiveTime*DisplayIndent)) == 1 ){
+
+            Cookies[DisplayIndent].SetActive(true);
+            DisplayIndent++;
+        }
+
+
+    }
+
+    //クッキーの円関係の関数
+    void CookiesCircle(){
+
         for (int i=0; i < DisplayIndent; i++){
 
             if(Cookies[i].activeSelf){
@@ -93,7 +114,7 @@ public class GameController : MonoBehaviour
     void TimeCounter(){
 
          //時間をカウントする
-        times += Time.deltaTime;
+        times -= Time.deltaTime;
 
         //時間を表示する
         timeText.text = ((int)times).ToString() + "秒";
