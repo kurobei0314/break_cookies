@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AssetStore\IrregularCircleUI\Scripts\CircleAnimation.cs" />
+     <Compile Include="Assets\Scripts\Constant.cs" />
      <Compile Include="Assets\Scripts\cookie.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\PlayerControll.cs" />
