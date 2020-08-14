@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     //時間を表示するText型の変数
     public Text timeText;
 
-    private float times = GameInfo.GameTime;
+    private float times = GameInfo.GAME_TIME;
 
     //ゲームの状況を管理する
     public enum GameState{
@@ -68,6 +68,9 @@ public class GameController : MonoBehaviour
 
             Cookies[i].GetComponent<cookie>().ChangeCookieImage(kindnum);
 
+            float speed = Random.Range(GameInfo.MIN_SPEED, GameInfo.MAX_SPEED);
+            Cookies[i].GetComponent<cookie>().SetSpeed(speed);
+
             Cookies[i].transform.parent = CookiesParent.transform;
             Cookies[i].transform.localScale = new Vector3(1.0f,1.0f,1.0f);
             Cookies[i].transform.localPosition = new Vector3(x_pos,y_pos,1.0f);
@@ -87,15 +90,13 @@ public class GameController : MonoBehaviour
     void CookiesActive(){
 
         int itimes = (int)times;
-        int ActiveTime = (int)(GameInfo.GameTime / GameInfo.COOKIE_NUM);
+        int ActiveTime = (int)(GameInfo.GAME_TIME / GameInfo.COOKIE_NUM);
         
-        if( DisplayIndent == 0 || (int)( (GameInfo.GameTime - itimes) / (ActiveTime*DisplayIndent)) == 1 ){
+        if( DisplayIndent == 0 || (int)( (GameInfo.GAME_TIME - itimes) / (ActiveTime*DisplayIndent)) == 1 ){
 
             Cookies[DisplayIndent].SetActive(true);
             DisplayIndent++;
         }
-
-
     }
 
     //クッキーの円関係の関数
@@ -107,6 +108,11 @@ public class GameController : MonoBehaviour
                 GameObject circle = Cookies[i].transform.Find("circle").gameObject;
                 float speed = Cookies[i].GetComponent<cookie>().GetSpeed();
                 circle.transform.localScale += new Vector3 (speed,speed,1); 
+
+                if (circle.transform.localScale.x > GameInfo.MAX_CSIZE){
+                    Cookies[i].SetActive(false);
+                }
+                
             }
         }
     }
@@ -119,6 +125,6 @@ public class GameController : MonoBehaviour
         //時間を表示する
         timeText.text = ((int)times).ToString() + "秒";
 
-        if(times > GameInfo.GameTime) SetcurrentGameState(GameState.GAMEOVER);
+        if(times > GameInfo.GAME_TIME) SetcurrentGameState(GameState.GAMEOVER);
     }
 }

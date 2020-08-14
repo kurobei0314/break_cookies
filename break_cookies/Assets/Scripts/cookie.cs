@@ -73,5 +73,9 @@ public class cookie : MonoBehaviour
     public float GetSpeed(){
         return speed;
     }
+
+    public void SetSpeed(float num){
+        speed = num;
+    }
 }
 
