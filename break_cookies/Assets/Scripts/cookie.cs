@@ -12,7 +12,7 @@ public class cookie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<Button>().onClick.AddListener (CookieClick);
     }
 
     // Update is called once per frame
@@ -26,11 +26,17 @@ public class cookie : MonoBehaviour
         */
         
     }
-
+    /*
     void ControllCircle(){
 
         GameObject circle = gameObject.transform.GetChild(0).gameObject;
         circle.transform.localScale += new Vector3 (speed,speed,1); 
+    }
+    */
+
+    public void CookieClick(){
+        this.gameObject.SetActive(false);
+        Debug.Log("wa-iwa-iwa---i");
     }
 
     public void ChangeCookieImage(int kindnum){

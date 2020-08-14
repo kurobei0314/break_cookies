@@ -35,7 +35,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         SetcurrentGameState(GameState.PREPARE);
-        CookiesInitiallize();   
+        CookiesInitiallize();
+        ScoreManager.instance.score = 0;
         SetcurrentGameState(GameState.MAIN);
     }
 
@@ -98,6 +99,5 @@ public class GameController : MonoBehaviour
         timeText.text = ((int)times).ToString() + "秒";
 
         if(times > GameInfo.GameTime) SetcurrentGameState(GameState.GAMEOVER);
-
     }
 }
