@@ -64,14 +64,14 @@ public class GameController : MonoBehaviour
             float x_pos = Random.Range(-350.0f, 350.0f);
             float y_pos= Random.Range(-250.0f, 250.0f);
 
-            Cookies[i] =  Instantiate (Cookie,new Vector3(0.0f,0.0f,0.0f),Quaternion.identity) as GameObject;
+            Cookies[i] =  Instantiate(Cookie,new Vector3(0.0f,0.0f,0.0f),Quaternion.identity) as GameObject;
 
             Cookies[i].GetComponent<cookie>().ChangeCookieImage(kindnum);
 
             float speed = Random.Range(GameInfo.MIN_SPEED, GameInfo.MAX_SPEED);
             Cookies[i].GetComponent<cookie>().SetSpeed(speed);
 
-            Cookies[i].transform.parent = CookiesParent.transform;
+            Cookies[i].transform.SetParent(CookiesParent.transform);
             Cookies[i].transform.localScale = new Vector3(1.0f,1.0f,1.0f);
             Cookies[i].transform.localPosition = new Vector3(x_pos,y_pos,1.0f);
 
