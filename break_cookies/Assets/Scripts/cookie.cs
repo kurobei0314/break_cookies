@@ -37,6 +37,7 @@ public class cookie : MonoBehaviour
     public void CookieClick(){
         this.gameObject.SetActive(false);
         Debug.Log("wa-iwa-iwa---i");
+        ScoreManager.instance.score += 1;
     }
 
     public void ChangeCookieImage(int kindnum){

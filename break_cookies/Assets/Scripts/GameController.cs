@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
 
     public GameObject CookiesParent;
 
+    [SerializeField]
+    Text ScoreText;
+
     //クッキーの状態を管理する
     private GameObject[] Cookies;
 
@@ -36,7 +39,7 @@ public class GameController : MonoBehaviour
     {
         SetcurrentGameState(GameState.PREPARE);
         CookiesInitiallize();
-        ScoreManager.instance.score = 0;
+        ScoreManager.instance.score = GameInfo.COOKIE_NUM;
         SetcurrentGameState(GameState.MAIN);
     }
 
@@ -46,6 +49,7 @@ public class GameController : MonoBehaviour
         if(currentGameState == GameState.MAIN){
             CookiesControll();
             TimeCounter();
+            ScoreText.text = ((int)ScoreManager.instance.score).ToString() + "枚";
         }
     }
 
