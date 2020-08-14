@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class cookie : MonoBehaviour
 {
     //　円が大きくなるスピード
-    int speed=1;
+    float speed=1;
 
 
     // Start is called before the first frame update
@@ -18,10 +18,12 @@ public class cookie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(gameObject.activeSelf){
 
             ControllCircle();
         }
+        */
         
     }
 
@@ -60,6 +62,10 @@ public class cookie : MonoBehaviour
         Sprite sprite = Resources.Load<Sprite>(ImagePass);
         this.GetComponent<Image>().sprite = sprite;
         //GetComponent<Image>();
+    }
+
+    public float GetSpeed(){
+        return speed;
     }
 }
 
