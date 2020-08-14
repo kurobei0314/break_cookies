@@ -53,12 +53,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ChristmasCookies\Scripts\BreakFruit.cs" />
-     <Compile Include="Assets\ChristmasCookies\Scripts\QuitOnEsc.cs" />
-     <Compile Include="Assets\ChristmasCookies\Scripts\RespawnFruit.cs" />
-     <Compile Include="Assets\ChristmasCookies\Scripts\RespawnFruit2D.cs" />
-     <Compile Include="Assets\ChristmasCookies\Scripts\ShootFruit.cs" />
-     <None Include="Assets\ChristmasCookies\Readme.txt" />
+     <Compile Include="Assets\AssetStore\IrregularCircleUI\Scripts\CircleAnimation.cs" />
+     <Compile Include="Assets\Scripts\cookie.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\PlayerControll.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/uchidamai/Unity/break_cookies/break_cookies/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
