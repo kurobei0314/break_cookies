@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -16,18 +17,39 @@ public class GameController : MonoBehaviour
 
     //見えてるクッキーのインデントを示す
     int DisplayIndent=0;
-    
+
+    //時間を表示するText型の変数
+    public Text timeText;
+
+    private float times = 0.0f;
+
+    //ゲームの状況を管理する
+    public enum GameState{
+        PREPARE,
+        MAIN,
+        GAMEOVER
+    }
+    public GameState currentGameState;
 
     // Start is called before the first frame update
     void Start()
     {
+        SetcurrentGameState(GameState.PREPARE);
         CookiesInitiallize();   
+        SetcurrentGameState(GameState.MAIN);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentGameState == GameState.MAIN){
+            CookiesControll();
+            TimeCounter();
+        }
+    }
+
+    void SetcurrentGameState(GameState state){
+        currentGameState = state;
     }
 
     void CookiesInitiallize(){
@@ -65,5 +87,17 @@ public class GameController : MonoBehaviour
                 circle.transform.localScale += new Vector3 (speed,speed,1); 
             }
         }
+    }
+
+    void TimeCounter(){
+
+         //時間をカウントする
+        times += Time.deltaTime;
+
+        //時間を表示する
+        timeText.text = ((int)times).ToString() + "秒";
+
+        if(times > GameInfo.GameTime) SetcurrentGameState(GameState.GAMEOVER);
+
     }
 }

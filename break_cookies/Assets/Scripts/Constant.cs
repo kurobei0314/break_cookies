@@ -4,8 +4,12 @@ using UnityEngine;
 
     public static class GameInfo{
 
-       // クッキーを作成する総数
-       public static readonly float COOKIE_NUM = 50;
+        // クッキーを作成する総数
+        public static readonly float COOKIE_NUM = 10;
+
+        //　ゲームの時間
+        public static readonly float GameTime = 30;
+
 
     }
 
