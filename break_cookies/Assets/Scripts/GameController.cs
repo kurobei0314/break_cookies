@@ -99,9 +99,11 @@ public class GameController : MonoBehaviour
         int ActiveTime = (int)(GameInfo.GAME_TIME / GameInfo.COOKIE_NUM);
         
         if( DisplayIndent == 0 || (int)( (GameInfo.GAME_TIME - itimes) / (ActiveTime*DisplayIndent)) == 1 ){
+            if(DisplayIndent != GameInfo.COOKIE_NUM){
 
-            Cookies[DisplayIndent].SetActive(true);
-            DisplayIndent++;
+                Cookies[DisplayIndent].SetActive(true);
+                DisplayIndent++;
+            }
         }
     }
 
