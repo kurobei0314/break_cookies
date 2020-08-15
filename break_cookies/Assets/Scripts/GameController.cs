@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -46,10 +47,14 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         if(currentGameState == GameState.MAIN){
             CookiesControll();
             TimeCounter();
             ScoreText.text = ((int)ScoreManager.instance.score).ToString() + "枚";
+        }
+        else if (currentGameState == GameState.GAMEOVER){
+            SceneManager.LoadScene("Result");
         }
     }
 
@@ -133,6 +138,6 @@ public class GameController : MonoBehaviour
         //時間を表示する
         timeText.text = "あと"+((int)times).ToString() + "秒";
 
-        if(times > GameInfo.GAME_TIME) SetcurrentGameState(GameState.GAMEOVER);
+        if(times < 0) SetcurrentGameState(GameState.GAMEOVER);
     }
 }

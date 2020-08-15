@@ -5,7 +5,7 @@ using UnityEngine;
     public static class GameInfo{
 
         // クッキーを作成する総数
-        public static readonly float COOKIE_NUM = 10;
+        public static readonly float COOKIE_NUM = 30;
 
         //　クッキーの大きさの範囲
         public static readonly float MIN_COOKIE_SCALE = 1.0f;
@@ -16,7 +16,7 @@ using UnityEngine;
 
         //円のスピードの最小値、最大値
         public static readonly float MIN_SPEED = 0.01f;
-        public static readonly float MAX_SPEED = 0.1f;
+        public static readonly float MAX_SPEED = 0.05f;
 
         public static readonly float MAX_CSIZE = 1.5f;
 
