@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitleController : MonoBehaviour
 {
@@ -10,15 +12,28 @@ public class TitleController : MonoBehaviour
     GameObject title;
 
     [SerializeField]
-    GameObject ButtonPos;
+    GameObject notitle;
 
     [SerializeField]
-    GameObject ButtonDropPos;
+    GameObject Button;
+
+    [SerializeField]
+    GameObject TitleButtonPos;
+
+    [SerializeField]
+    GameObject TitleButtonDropPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("AnimationTitle");      
+        notitle.SetActive(false);
+        StartCoroutine("AnimationTitle"); 
+
+        GameObject ButtonStart = Button.transform.Find("button_start").gameObject;
+        GameObject ButtonTutorial = Button.transform.Find("button_tutorial").gameObject;
+
+        ButtonStart.GetComponent<Button>().onClick.AddListener (StartClick);
+        ButtonTutorial.GetComponent<Button>().onClick.AddListener (TutorialClick);    
     }
 
     // Update is called once per frame
@@ -64,19 +79,32 @@ public class TitleController : MonoBehaviour
 
         //タイトルのボタンのアニメーション
         ButtonRectTran.DOMove (
-            ButtonDropPos.transform.position,　　//移動後の座標
+            TitleButtonDropPos.transform.position,　　//移動後の座標
             1.0f 　　　　　　//時間
         );
 
         yield return new WaitForSeconds(1.0f);
 
         ButtonRectTran.DOLocalJump(
-            ButtonPos.transform.localPosition,      // 移動終了地点
+            TitleButtonPos.transform.localPosition,      // 移動終了地点
             30,               // ジャンプする力
             2,               // ジャンプする回数
             1.0f              // アニメーション時間
         );
 
         yield return new WaitForSeconds(1.0f);
+
+        notitle.SetActive(true);
+
     }
+    public void StartClick(){
+        //Debug.Log("wa-iwa-i");
+        SceneManager.LoadScene("Main");
+    }
+
+    public void TutorialClick(){
+        Debug.Log("wa-iwa-iwa-iwa-i");
+    }
+
+  
 }

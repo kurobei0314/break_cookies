@@ -58,10 +58,10 @@
      <Compile Include="Assets\Scripts\Constant.cs" />
      <Compile Include="Assets\Scripts\cookie.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
-     <Compile Include="Assets\Scripts\PlayerControll.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
-     <Compile Include="Assets\Scripts\title.cs" />
+     <Compile Include="Assets\Scripts\TitleButton.cs" />
      <Compile Include="Assets\Scripts\TitleController.cs" />
+     <None Include="Assets\Resources\font\Kosugi_Maru\LICENSE.txt" />
      <None Include="Assets\Resources\font\Source_Code_Pro\OFL.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/uchidamai/Unity/break_cookies/break_cookies/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
