@@ -13,29 +13,56 @@ public class ResultController : MonoBehaviour
     [SerializeField]
     GameObject button;
 
+    GameObject Text1;
+    GameObject Text2;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        TextInitiallize();
         TextContent();
+        button.SetActive(false);
+        button.GetComponent<Button>().onClick.AddListener (titleClick);
     }
 
     // Update is called once per frame
     void Update()
     {
-        button.GetComponent<Button>().onClick.AddListener (titleClick);
+        StartCoroutine("AnimationResult"); 
+    }
+
+    void TextInitiallize(){
+
+        Text1 = Text.transform.Find("Text1").gameObject;
+        Text2 = Text.transform.Find("Text2").gameObject;
+
+        Text1.SetActive(false);
+        Text2.SetActive(false);
     }
 
     void TextContent(){
 
-        Text Text1 = Text.transform.Find("Text1").gameObject.GetComponent<Text>();
-        Text Text2 = Text.transform.Find("Text2").gameObject.GetComponent<Text>();
+        Text Text1t = Text1.GetComponent<Text>();
+        Text Text2t = Text2.GetComponent<Text>();
 
-        Text1.text = "計"+((int)ScoreManager.instance.score).ToString() + "枚";
-        Text2.text = ((int)ScoreManager.instance.score-GameInfo.COOKIE_NUM).ToString() + "まいふえた！";
-
+        Text1t.text = "計"+((int)ScoreManager.instance.score).ToString() + "枚";
+        Text2t.text = ((int)ScoreManager.instance.score-GameInfo.COOKIE_NUM).ToString() + "まいふえた！";
     }
     
     void titleClick(){
         SceneManager.LoadScene("title");
+    }
+
+    private IEnumerator AnimationResult(){
+
+        Text1.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+
+        Text2.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+
+        button.SetActive(true);
+
     }
 }
