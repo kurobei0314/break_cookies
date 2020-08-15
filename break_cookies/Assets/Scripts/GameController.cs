@@ -129,7 +129,7 @@ public class GameController : MonoBehaviour
         times -= Time.deltaTime;
 
         //時間を表示する
-        timeText.text = ((int)times).ToString() + "秒";
+        timeText.text = "あと"+((int)times).ToString() + "秒";
 
         if(times > GameInfo.GAME_TIME) SetcurrentGameState(GameState.GAMEOVER);
     }
