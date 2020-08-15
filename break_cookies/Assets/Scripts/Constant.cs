@@ -7,6 +7,10 @@ using UnityEngine;
         // クッキーを作成する総数
         public static readonly float COOKIE_NUM = 10;
 
+        //　クッキーの大きさの範囲
+        public static readonly float MIN_COOKIE_SCALE = 1.0f;
+        public static readonly float MAX_COOKIE_SCALE = 2.0f;
+
         //　ゲームの時間
         public static readonly float GAME_TIME = 30;
 

@@ -66,7 +66,9 @@ public class GameController : MonoBehaviour
             //float y_pos= Random.Range(-300.0f, 300.0f);
 
             float x_pos = Random.Range(-350.0f, 350.0f);
-            float y_pos= Random.Range(-250.0f, 250.0f);
+            float y_pos = Random.Range(-250.0f, 250.0f);
+
+            float scale = Random.Range(GameInfo.MIN_COOKIE_SCALE, GameInfo.MAX_COOKIE_SCALE);
 
             Cookies[i] =  Instantiate(Cookie,new Vector3(0.0f,0.0f,0.0f),Quaternion.identity) as GameObject;
 
@@ -76,7 +78,7 @@ public class GameController : MonoBehaviour
             Cookies[i].GetComponent<cookie>().SetSpeed(speed);
 
             Cookies[i].transform.SetParent(CookiesParent.transform);
-            Cookies[i].transform.localScale = new Vector3(1.0f,1.0f,1.0f);
+            Cookies[i].transform.localScale = new Vector3(scale,scale,1.0f);
             Cookies[i].transform.localPosition = new Vector3(x_pos,y_pos,1.0f);
 
             //Cookies[i].SetActive(true);
