@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
 
     //クッキーのprehad
     [SerializeField]
-	public GameObject Cookie;
+	public GameObject Cookie, CookiesBackground;
 
     //見えてるクッキーのインデントを示す
     int DisplayIndent=0;
@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
         CountCookieImage = CountCookie.transform.Find("Image").gameObject;
         timeText.text  = "もうすぐ";
         ScoreText.text = "はじまるよー！";
+        CookiesBackground.SetActive(false);
     }
 
     // Update is called once per frame
@@ -65,6 +66,7 @@ public class GameController : MonoBehaviour
             CookiesControll();
             GameTimeCounter();
             ScoreText.text = "てもち"+((int)ScoreManager.instance.score).ToString() + "枚";
+            if((int)ScoreManager.instance.score-GameInfo.COOKIE_NUM > 15) CookiesBackground.SetActive(true);
         }
         else if (currentGameState == GameState.GAMEOVER){
             AudioManager.Instance.StopBGM();
