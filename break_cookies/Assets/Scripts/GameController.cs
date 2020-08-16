@@ -70,7 +70,8 @@ public class GameController : MonoBehaviour
         }
         else if (currentGameState == GameState.GAMEOVER){
             AudioManager.Instance.StopBGM();
-            SceneManager.LoadScene("Result");
+            FadeManager.Instance.LoadScene ("Result", 1.0f);
+            //SceneManager.LoadScene("Result");
         }
         else if(currentGameState == GameState.COUNT){
 

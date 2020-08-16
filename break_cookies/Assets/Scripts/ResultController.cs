@@ -58,6 +58,7 @@ public class ResultController : MonoBehaviour
     }
     private IEnumerator AnimationResult(){
 
+        yield return new WaitForSeconds(1.0f);
         Text1.SetActive(true);
         yield return new WaitForSeconds(1.0f);
 
