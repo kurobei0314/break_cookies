@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\ResultController.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\TitleController.cs" />
+     <Compile Include="Assets\Scripts\tutorial.cs" />
      <None Include="Assets\Resources\font\Kosugi_Maru\LICENSE.txt" />
      <None Include="Assets\Resources\font\Sawarabi_Gothic\OFL.txt" />
      <None Include="Assets\Resources\font\Source_Code_Pro\OFL.txt" />

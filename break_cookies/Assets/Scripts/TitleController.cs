@@ -32,6 +32,7 @@ public class TitleController : MonoBehaviour
     {
         AudioManager.Instance.PlayBGM("story");
         notitle.SetActive(false);
+        Tutorial.SetActive(false);
         StartCoroutine("AnimationTitle"); 
 
         GameObject ButtonStart = Button.transform.Find("button_start").gameObject;
@@ -111,7 +112,9 @@ public class TitleController : MonoBehaviour
 
     public void TutorialClick(){
         AudioManager.Instance.PlaySE("button70");
+        Tutorial.GetComponent<tutorial>().TutorialInitialize();
         Tutorial.SetActive(true);
+        
     }
 
 }
