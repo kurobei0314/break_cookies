@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         SetcurrentGameState(GameState.PREPARE);
+        AudioManager.Instance.PlayBGM("kuturogi");
         CookiesInitiallize();
         ScoreManager.instance.score = GameInfo.COOKIE_NUM;
         SetcurrentGameState(GameState.MAIN);
@@ -54,6 +55,7 @@ public class GameController : MonoBehaviour
             ScoreText.text = ((int)ScoreManager.instance.score).ToString() + "枚";
         }
         else if (currentGameState == GameState.GAMEOVER){
+            AudioManager.Instance.StopBGM();
             SceneManager.LoadScene("Result");
         }
     }

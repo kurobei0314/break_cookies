@@ -35,8 +35,8 @@ public class cookie : MonoBehaviour
     */
 
     public void CookieClick(){
+        AudioManager.Instance.PlaySE("cookie_break");
         this.gameObject.SetActive(false);
-        Debug.Log("wa-iwa-iwa---i");
         ScoreManager.instance.score += 1;
     }
 

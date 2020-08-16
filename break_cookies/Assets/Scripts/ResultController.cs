@@ -20,6 +20,7 @@ public class ResultController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.PlayBGM("04_karuiasidoride");
         TextInitiallize();
         TextContent();
         button.SetActive(false);
@@ -51,9 +52,10 @@ public class ResultController : MonoBehaviour
     }
     
     void titleClick(){
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySE("button70");
         SceneManager.LoadScene("title");
     }
-
     private IEnumerator AnimationResult(){
 
         Text1.SetActive(true);

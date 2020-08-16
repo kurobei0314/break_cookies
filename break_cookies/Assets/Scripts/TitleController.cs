@@ -26,6 +26,7 @@ public class TitleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.PlayBGM("story");
         notitle.SetActive(false);
         StartCoroutine("AnimationTitle"); 
 
@@ -99,12 +100,14 @@ public class TitleController : MonoBehaviour
     }
     public void StartClick(){
         //Debug.Log("wa-iwa-i");
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySE("button70");
         SceneManager.LoadScene("Main");
     }
 
     public void TutorialClick(){
+        AudioManager.Instance.PlaySE("button70");
         Debug.Log("wa-iwa-iwa-iwa-i");
     }
 
-  
 }
