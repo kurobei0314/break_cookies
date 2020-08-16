@@ -65,6 +65,7 @@
      <None Include="Assets\Resources\font\Kosugi_Maru\LICENSE.txt" />
      <None Include="Assets\Resources\font\Sawarabi_Gothic\OFL.txt" />
      <None Include="Assets\Resources\font\Source_Code_Pro\OFL.txt" />
+     <None Include="Assets\Resources\font\Nunito_Sans\OFL.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/uchidamai/Unity/break_cookies/break_cookies/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

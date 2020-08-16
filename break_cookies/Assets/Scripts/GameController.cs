@@ -25,11 +25,18 @@ public class GameController : MonoBehaviour
     //時間を表示するText型の変数
     public Text timeText;
 
-    private float times = GameInfo.GAME_TIME;
+    public GameObject CountCookie;
+
+    //カウント時間を表示するText型の変数
+    private Text CountTimeText;
+    private GameObject CountCookieImage;
+
+    private float GameTimes = GameInfo.GAME_TIME;
+    private float CountTimes = 4;
 
     //ゲームの状況を管理する
     public enum GameState{
-        PREPARE,
+        COUNT,
         MAIN,
         GAMEOVER
     }
@@ -38,11 +45,16 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetcurrentGameState(GameState.PREPARE);
+        SetcurrentGameState(GameState.COUNT);
         AudioManager.Instance.PlayBGM("kuturogi");
         CookiesInitiallize();
         ScoreManager.instance.score = GameInfo.COOKIE_NUM;
-        SetcurrentGameState(GameState.MAIN);
+        //SetcurrentGameState(GameState.MAIN);
+
+        CountTimeText = CountCookie.transform.Find("CountText").gameObject.GetComponent<Text>();
+        CountCookieImage = CountCookie.transform.Find("Image").gameObject;
+        timeText.text  = "もうすぐ";
+        ScoreText.text = "はじまるよー！";
     }
 
     // Update is called once per frame
@@ -51,12 +63,23 @@ public class GameController : MonoBehaviour
     
         if(currentGameState == GameState.MAIN){
             CookiesControll();
-            TimeCounter();
-            ScoreText.text = ((int)ScoreManager.instance.score).ToString() + "枚";
+            GameTimeCounter();
+            ScoreText.text = "てもち"+((int)ScoreManager.instance.score).ToString() + "枚";
         }
         else if (currentGameState == GameState.GAMEOVER){
             AudioManager.Instance.StopBGM();
             SceneManager.LoadScene("Result");
+        }
+        else if(currentGameState == GameState.COUNT){
+
+            CountCookieImage.transform.Rotate(0.0f,0.0f,0.2f);
+
+            CountTimes=TimeCounter(CountTimes);
+            CountTimeText.text = ((int)CountTimes).ToString();
+            if(CountTimes <= 0){
+                SetcurrentGameState(GameState.MAIN);
+                CountCookie.SetActive(false);
+            }
         }
     }
 
@@ -102,7 +125,7 @@ public class GameController : MonoBehaviour
     //一定時間経過するごとにクッキーを表示させる
     void CookiesActive(){
 
-        int itimes = (int)times;
+        int itimes = (int)GameTimes;
         int ActiveTime = (int)(GameInfo.GAME_TIME / GameInfo.COOKIE_NUM);
         
         if( DisplayIndent == 0 || (int)( (GameInfo.GAME_TIME - itimes) / (ActiveTime*DisplayIndent)) == 1 ){
@@ -132,14 +155,20 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void TimeCounter(){
+    void GameTimeCounter(){
 
-         //時間をカウントする
-        times -= Time.deltaTime;
+        //時間をカウントする
+        GameTimes = TimeCounter(GameTimes);
 
         //時間を表示する
-        timeText.text = "あと"+((int)times).ToString() + "秒";
+        timeText.text = "あと"+((int)GameTimes).ToString() + "秒";
 
-        if(times < 0) SetcurrentGameState(GameState.GAMEOVER);
+        if(GameTimes < 0) SetcurrentGameState(GameState.GAMEOVER);
+    }
+
+    float TimeCounter(float time){
+
+        time -= Time.deltaTime;
+        return time;
     }
 }
