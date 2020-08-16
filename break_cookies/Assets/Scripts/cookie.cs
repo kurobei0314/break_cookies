@@ -8,6 +8,8 @@ public class cookie : MonoBehaviour
     //　円が大きくなるスピード
     float speed=1;
 
+    int CookieKind=0;
+    string BreakImagePass="";
 
     // Start is called before the first frame update
     void Start()
@@ -36,39 +38,46 @@ public class cookie : MonoBehaviour
 
     public void CookieClick(){
         AudioManager.Instance.PlaySE("cookie_break");
-        this.gameObject.SetActive(false);
+        StartCoroutine("AnimationCookie");
         ScoreManager.instance.score += 1;
+    }
+
+    private IEnumerator AnimationCookie(){
+
+        ChangeImage(BreakImagePass);
+        yield return new WaitForSeconds(0.5f);
+        this.gameObject.SetActive(false);
     }
 
     public void ChangeCookieImage(int kindnum){
 
         string ImagePass="";
+        CookieKind=kindnum;
 
-        switch (kindnum)
+        switch (CookieKind)
         {
             case 1:
                 ImagePass = "Pictures/cookie1";
+                BreakImagePass = "Pictures/cookie1_break";
                 break;
 
             case 2:
                 ImagePass = "Pictures/cookie2";
+                BreakImagePass = "Pictures/cookie2_break";
                 break;
             
             case 3:
                 ImagePass = "Pictures/cookie3";
+                BreakImagePass = "Pictures/cookie3_break";
                 break;
 
             case 4:
                 ImagePass = "Pictures/cookie4";
+                BreakImagePass = "Pictures/cookie4_break";
                 break;
             
         }
-
-        //Image image = GetComponent<Image>();
-
-        Sprite sprite = Resources.Load<Sprite>(ImagePass);
-        this.GetComponent<Image>().sprite = sprite;
-        //GetComponent<Image>();
+        ChangeImage(ImagePass);
     }
 
     public float GetSpeed(){
@@ -78,5 +87,12 @@ public class cookie : MonoBehaviour
     public void SetSpeed(float num){
         speed = num;
     }
+
+    public void ChangeImage(string pass){
+
+        Sprite sprite = Resources.Load<Sprite>(pass);
+        this.GetComponent<Image>().sprite = sprite;
+    }
+
 }
 
