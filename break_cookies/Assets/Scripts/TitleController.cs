@@ -18,6 +18,10 @@ public class TitleController : MonoBehaviour
     GameObject Button;
 
     [SerializeField]
+    GameObject Tutorial;
+
+
+    [SerializeField]
     GameObject TitleButtonPos;
 
     [SerializeField]
@@ -107,7 +111,7 @@ public class TitleController : MonoBehaviour
 
     public void TutorialClick(){
         AudioManager.Instance.PlaySE("button70");
-        Debug.Log("wa-iwa-iwa-iwa-i");
+        Tutorial.SetActive(true);
     }
 
 }

@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\TitleController.cs" />
      <None Include="Assets\Resources\font\Kosugi_Maru\LICENSE.txt" />
+     <None Include="Assets\Resources\font\Sawarabi_Gothic\OFL.txt" />
      <None Include="Assets\Resources\font\Source_Code_Pro\OFL.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/uchidamai/Unity/break_cookies/break_cookies/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
