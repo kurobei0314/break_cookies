@@ -100,8 +100,6 @@ public class GameController : MonoBehaviour
         Cookies = new GameObject[1024];
         for (int i=0; i < GameInfo.COOKIE_NUM; i++){
             int kindnum = Random.Range(1, 4);
-            //float x_pos = Random.Range(-400.0f, 400.0f);
-            //float y_pos= Random.Range(-300.0f, 300.0f);
 
             float x_pos = Random.Range(-350.0f, 350.0f);
             float y_pos = Random.Range(-250.0f, 250.0f);
@@ -115,24 +113,29 @@ public class GameController : MonoBehaviour
             float speed = Random.Range(GameInfo.MIN_SPEED, GameInfo.MAX_SPEED);
             Cookies[i].GetComponent<cookie>().SetSpeed(speed);
 
+            float stime = Random.value;
+            Cookies[i].GetComponent<cookie>().Setstime(stime);
+
             Cookies[i].transform.SetParent(CookiesParent.transform);
             Cookies[i].transform.localScale = new Vector3(scale,scale,1.0f);
             Cookies[i].transform.localPosition = new Vector3(x_pos,y_pos,1.0f);
 
-            //Cookies[i].SetActive(true);
             Cookies[i].SetActive(false);
         }
     }
 
     void CookiesControll(){
-        
-        CookiesActive();
+
+        if(DisplayIndent < GameInfo.COOKIE_NUM){
+            CookiesActive();
+        }
         CookiesCircle();
     }
 
     //一定時間経過するごとにクッキーを表示させる
     void CookiesActive(){
 
+        /*
         int itimes = (int)GameTimes;
         int ActiveTime = (int)(GameInfo.GAME_TIME / GameInfo.COOKIE_NUM);
         
@@ -143,6 +146,18 @@ public class GameController : MonoBehaviour
                 DisplayIndent++;
             }
         }
+        */
+
+        
+        float rtime = TimeCounter(GameTimes);
+        float time = GameInfo.GAME_TIME - rtime;
+        float stime = Cookies[DisplayIndent].GetComponent<cookie>().Getstime();
+            
+        if(time > DisplayIndent + stime){
+            Cookies[DisplayIndent].SetActive(true);
+            DisplayIndent++;
+        }
+        
     }
 
     //クッキーの円関係の関数
@@ -158,7 +173,6 @@ public class GameController : MonoBehaviour
                 if (circle.transform.localScale.x > GameInfo.MAX_CSIZE){
                     Cookies[i].SetActive(false);
                 }
-                
             }
         }
     }
@@ -184,7 +198,7 @@ public class GameController : MonoBehaviour
 
         if(((int)ScoreManager.instance.score-GameInfo.COOKIE_NUM )%20 == 0) {
                 int index = (int)(((int)ScoreManager.instance.score-GameInfo.COOKIE_NUM )/20)-1;
-                if(index < 4){
+                if( 0 <= index  &&index < 4){
                     CookiesBackground.transform.GetChild(index).gameObject.SetActive(true);
                 }
             }

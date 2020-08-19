@@ -8,6 +8,9 @@ public class cookie : MonoBehaviour
     //　円が大きくなるスピード
     float speed=1;
 
+    //　どれくらい時間をずらすか
+    float stime=0.0f;
+
     int CookieKind=0;
     string BreakImagePass="";
 
@@ -94,5 +97,12 @@ public class cookie : MonoBehaviour
         this.GetComponent<Image>().sprite = sprite;
     }
 
+    public void Setstime(float num){
+        stime = num;
+    }
+
+    public float Getstime(){
+        return stime;
+    }
 }
 
