@@ -55,7 +55,12 @@ public class GameController : MonoBehaviour
         CountCookieImage = CountCookie.transform.Find("Image").gameObject;
         timeText.text  = "もうすぐ";
         ScoreText.text = "はじまるよー！";
-        CookiesBackground.SetActive(false);
+    
+        CookiesBackground.SetActive(true);
+
+        for(int i=0;i < CookiesBackground.transform.childCount;i++){
+            CookiesBackground.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -66,7 +71,7 @@ public class GameController : MonoBehaviour
             CookiesControll();
             GameTimeCounter();
             ScoreText.text = "てもち"+((int)ScoreManager.instance.score).ToString() + "枚";
-            if((int)ScoreManager.instance.score-GameInfo.COOKIE_NUM > 15) CookiesBackground.SetActive(true);
+            ChangeBackground();
         }
         else if (currentGameState == GameState.GAMEOVER){
             AudioManager.Instance.StopBGM();
@@ -173,5 +178,15 @@ public class GameController : MonoBehaviour
 
         time -= Time.deltaTime;
         return time;
+    }
+
+    void ChangeBackground(){
+
+        if(((int)ScoreManager.instance.score-GameInfo.COOKIE_NUM )%20 == 0) {
+                int index = (int)(((int)ScoreManager.instance.score-GameInfo.COOKIE_NUM )/20)-1;
+                if(index < 4){
+                    CookiesBackground.transform.GetChild(index).gameObject.SetActive(true);
+                }
+            }
     }
 }
