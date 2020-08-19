@@ -34,6 +34,9 @@ public class GameController : MonoBehaviour
     private float GameTimes = GameInfo.GAME_TIME;
     private float CountTimes = 4;
 
+    //　残り時間3秒のflag
+    private int count3 = 3;
+
     //ゲームの状況を管理する
     public enum GameState{
         COUNT,
@@ -184,6 +187,14 @@ public class GameController : MonoBehaviour
 
         //時間を表示する
         timeText.text = "あと"+((int)GameTimes).ToString() + "秒";
+
+        //3秒前の音
+        if( 0 < GameTimes && GameTimes < 4){
+            if ((int)GameTimes <= count3 && count3 < (int)GameTimes+1){
+                AudioManager.Instance.PlaySE("count");
+                count3--;
+            }
+        }
 
         if(GameTimes < 0) SetcurrentGameState(GameState.GAMEOVER);
     }
