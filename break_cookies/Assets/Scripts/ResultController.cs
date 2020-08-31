@@ -11,7 +11,10 @@ public class ResultController : MonoBehaviour
     GameObject Text;
 
     [SerializeField]
-    GameObject button;
+    GameObject button_title;
+
+    [SerializeField]
+    GameObject button_ranking;
 
     GameObject Text1;
     GameObject Text2;
@@ -23,8 +26,10 @@ public class ResultController : MonoBehaviour
         AudioManager.Instance.PlayBGM("04_karuiasidoride");
         TextInitiallize();
         TextContent();
-        button.SetActive(false);
-        button.GetComponent<Button>().onClick.AddListener (titleClick);
+        button_title.SetActive(false);
+        button_ranking.SetActive(false);
+        button_title.GetComponent<Button>().onClick.AddListener (titleClick);
+        button_ranking.GetComponent<Button>().onClick.AddListener(rankingClick);
     }
 
     // Update is called once per frame
@@ -56,6 +61,11 @@ public class ResultController : MonoBehaviour
         AudioManager.Instance.PlaySE("button70");
         SceneManager.LoadScene("title");
     }
+    void rankingClick(){
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySE("button70");
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking (((int)ScoreManager.instance.score));
+    }
     private IEnumerator AnimationResult(){
 
         yield return new WaitForSeconds(1.0f);
@@ -65,7 +75,8 @@ public class ResultController : MonoBehaviour
         Text2.SetActive(true);
         yield return new WaitForSeconds(1.0f);
 
-        button.SetActive(true);
+        button_title.SetActive(true);
+        button_ranking.SetActive(true);
 
     }
 }
