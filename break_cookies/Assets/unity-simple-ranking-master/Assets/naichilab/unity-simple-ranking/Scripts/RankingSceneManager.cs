@@ -138,6 +138,7 @@ namespace naichilab
 
         public void SendScore()
         {
+            AudioManager.Instance.PlaySE("button70");
             StartCoroutine(SendScoreEnumerator());
         }
 
@@ -238,6 +239,7 @@ namespace naichilab
         {
             closeButton.interactable = false;
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Ranking");
+            AudioManager.Instance.PlaySE("button70");
         }
 
         private void MaskOffOn()
