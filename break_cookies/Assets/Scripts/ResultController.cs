@@ -62,7 +62,6 @@ public class ResultController : MonoBehaviour
         SceneManager.LoadScene("title");
     }
     void rankingClick(){
-        AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlaySE("button70");
         naichilab.RankingLoader.Instance.SendScoreAndShowRanking (((int)ScoreManager.instance.score));
     }

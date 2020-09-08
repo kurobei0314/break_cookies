@@ -14,5 +14,14 @@
 ゲームのイメージ
 - 不思議なポケット(という曲)
 
+よかった点
+
+
+反省点
+
+gitの容量オーバー問題に参考にした記事
+- https://qiita.com/kanaya/items/ad52f25da32cb5aa19e6
+- https://qiita.com/ikmski/items/5cc8b8832336b8d85429
+- https://www-creators.com/archives/1662
 
 
